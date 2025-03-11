@@ -44,8 +44,8 @@ It supports both TCP and UDP
 ![App Screenshot](https://raw.githubusercontent.com/Sir-MmD/NATPass/refs/heads/main/pics/diagram.png)
 
 ## Bridge Server Example
-```
-$ netpass -s -h 0.0.0.0 -p 9090 -b 9191 -t MySecurePassword
+```bash
+./natpass -s -h 0.0.0.0 -p 9090 -b 9191 -t MySecurePassword
 ```
 ### -h: 
 Listening ip addresses
@@ -57,8 +57,8 @@ Exposed port to access System Behind NAT
 A secure password 
 
 ## Client Example (System behind NAT)
-```
-$ netpass -c -h SERVER_IP -p 9090 -b 80 -t MySecurePassword
+```bash
+./natpass -c -h SERVER_IP -p 9090 -b 80 -t MySecurePassword
 ```
 ### -h: 
 Public IP address of Bridge Server 
@@ -70,7 +70,7 @@ Desired port to expose
 Same secure password entered on Bridge Server
 
 ### Log
-By default, NETPass uses "none" as log level but you can change it with ```"-l``` switch to:
+By default, NATPass uses "none" as log level but you can change it with ```"-l``` switch to:
 
 - debug
 - info
