@@ -1,0 +1,117 @@
+{
+  "api": {
+    "services": [
+      "HandlerService",
+      "LoggerService",
+      "StatsService"
+    ],
+    "tag": "api"
+  },
+  "burstObservatory": null,
+  "dns": null,
+  "fakedns": null,
+  "inbounds": [
+    {
+      "allocate": null,
+      "listen": "127.0.0.1",
+      "port": 62788,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "127.0.0.1"
+      },
+      "sniffing": null,
+      "streamSettings": null,
+      "tag": "api"
+    }
+  ],
+  "log": {
+    "access": "true",
+    "dnsLog": true,
+    "error": "",
+    "loglevel": "CLIENT_LOG",
+    "maskAddress": ""
+  },
+  "observatory": null,
+  "outbounds": [
+    {
+      "tag": "direct",
+      "protocol": "freedom",
+      "settings": {
+        "redirect": "127.0.0.1:CLIENT_BIND"
+      }
+    },
+    {
+      "protocol": "vless",
+      "sendThrough": "0.0.0.0",
+      "settings": {
+        "vnext": [
+          {
+            "address": "CLIENT_HOST",
+            "port": CLIENT_PORT,
+            "users": [
+              {
+                "encryption": "none",
+                "flow": "",
+                "id": "CLIENT_TOKEN"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+          "network": "ws",
+          "wsSettings": {
+            "path": "",
+            "headers": {}
+          }
+        },
+		"tag": "reverse_tunel"
+      }
+  ],
+  "policy": {
+    "levels": {
+      "0": {
+        "statsUserDownlink": true,
+        "statsUserUplink": true
+      }
+    },
+    "system": {
+      "statsInboundDownlink": true,
+      "statsInboundUplink": true,
+      "statsOutboundDownlink": true,
+      "statsOutboundUplink": true
+    }
+  },
+  "reverse": {
+    "bridges": [
+      {
+        "tag": "reverse-0",
+        "domain": "reverse.xui"
+      }
+    ]
+  },
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": [
+      {
+        "domain": [
+          "full:reverse.xui"
+        ],
+        "outboundTag": "reverse_tunel",
+        "inboundTag": [
+          "reverse-0"
+        ],
+        "type": "field"
+      },
+      {
+        "outboundTag": "direct",
+        "inboundTag": [
+          "reverse-0"
+        ],
+        "type": "field"
+      }
+    ]
+  },
+  "stats": {},
+  "transport": null
+}

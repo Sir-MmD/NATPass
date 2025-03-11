@@ -1,0 +1,152 @@
+{
+  "api": {
+    "services": [
+      "HandlerService",
+      "LoggerService",
+      "StatsService"
+    ],
+    "tag": "api"
+  },
+  "burstObservatory": null,
+  "dns": null,
+  "fakedns": null,
+  "inbounds": [
+    {
+      "allocate": null,
+      "listen": "127.0.0.1",
+      "port": 62789,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "127.0.0.1"
+      },
+      "sniffing": null,
+      "streamSettings": null,
+      "tag": "api"
+    },
+    {
+      "allocate": {
+        "concurrency": 3,
+        "refresh": 5,
+        "strategy": "always"
+      },
+      "listen": "SERVER_HOST",
+      "port": SERVER_PORT,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "email": "tunnel",
+            "flow": "",
+            "id": "SERVER_TOKEN"
+          }
+        ],
+        "decryption": "none",
+        "fallbacks": []
+      },
+      "sniffing": {
+        "destOverride": [
+          "http",
+          "tls",
+          "quic",
+          "fakedns"
+        ],
+        "enabled": false,
+        "metadataOnly": false,
+        "routeOnly": false
+      },
+      "streamSettings": {
+          "network": "ws",
+          "wsSettings": {
+            "path": "",
+            "headers": {}
+          }
+      },
+      "tag": "reverse_tunnel"
+    },
+    {
+      "allocate": {
+        "concurrency": 3,
+        "refresh": 5,
+        "strategy": "always"
+      },
+      "listen": "SERVER_HOST",
+      "port": SERVER_BIND,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "",
+        "followRedirect": true,
+        "network": "tcp,udp",
+        "port": null
+      },
+      "sniffing": {
+        "destOverride": [
+          "http",
+          "tls",
+          "quic",
+          "fakedns"
+        ],
+        "enabled": false,
+        "metadataOnly": false,
+        "routeOnly": false
+      },
+      "streamSettings": null,
+      "tag": "bind"
+    }
+  ],
+  "log": {
+    "access": "true",
+    "dnsLog": true,
+    "error": "",
+    "loglevel": "SERVER_LOG",
+    "maskAddress": ""
+  },
+  "observatory": null,
+  "outbounds": [],
+  "policy": {
+    "levels": {
+      "0": {
+        "statsUserDownlink": true,
+        "statsUserUplink": true
+      }
+    },
+    "system": {
+      "statsInboundDownlink": true,
+      "statsInboundUplink": true,
+      "statsOutboundDownlink": true,
+      "statsOutboundUplink": true
+    }
+  },
+  "reverse": {
+    "portals": [
+      {
+        "domain": "reverse.xui",
+        "tag": "reverse-0"
+      }
+    ]
+  },
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": [
+      {
+        "domain": [
+          "full:reverse.xui"
+        ],
+        "inboundTag": [
+          "reverse_tunnel"
+        ],
+        "outboundTag": "reverse-0",
+        "type": "field"
+      },
+      {
+        "inboundTag": [
+          "reverse_tunnel",
+          "bind"
+        ],
+        "outboundTag": "reverse-0",
+        "type": "field"
+      }
+    ]
+  },
+  "stats": {},
+  "transport": null
+}
