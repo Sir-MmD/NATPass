@@ -36,9 +36,9 @@ It supports both TCP and UDP
 
 | OS  | CPU Type         | ROOT Required |
 |:--------------:|:----------------:|:----------------:
-|![App Screenshot](https://raw.githubusercontent.com/Sir-MmD/NATPass/refs/heads/main/pics/windows.png)<div align="center">**Windows**| amd64 | NO
-| ![App Screenshot](https://raw.githubusercontent.com/Sir-MmD/NATPass/refs/heads/main/pics/linux.png)<div align="center">**Linux** | amd64 / arm64 | NO
-| ![App Screenshot](https://raw.githubusercontent.com/Sir-MmD/NATPass/refs/heads/main/pics/android.png)                                            <div align="center">**Android** | arm64 | NO
+|![App Screenshot](https://raw.githubusercontent.com/Sir-MmD/NATPass/refs/heads/main/pics/windows.png)<div align="center">**Windows**| AMD64 | NO
+| ![App Screenshot](https://raw.githubusercontent.com/Sir-MmD/NATPass/refs/heads/main/pics/linux.png)<div align="center">**Linux** | AMD64 / ARM64 | NO
+| ![App Screenshot](https://raw.githubusercontent.com/Sir-MmD/NATPass/refs/heads/main/pics/android.png)                                            <div align="center">**Android** | ARM64 | NO
 
 ## Diagram
 ![App Screenshot](https://raw.githubusercontent.com/Sir-MmD/NATPass/refs/heads/main/pics/diagram.png)
