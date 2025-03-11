@@ -84,6 +84,6 @@ By default, NATPass uses "VLESS + WS" as for the Reverse Tunnel, You can modify 
 git clone https://github.com/Sir-MmD/NATPass && cd NATPass
 ```
 ```bash
-go build netpass.go
+go build natpass.go
 ```
 After compilation, you need to download Xray-Core and extract it inside ```assets``` folder: https://github.com/XTLS/Xray-core
